@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PrdouctService } from '../services/prdouct.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +8,22 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  paises:any[] = [];
+
+  constructor(
+    public http:PrdouctService
+  ) {
+    this.http.getAll().subscribe(
+      result => {
+        this.paises = result;
+        console.log(result);
+        
+      },
+      error => {
+
+      }
+    );
+  }
+
 
 }
